@@ -1,0 +1,29 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Ingrese la temperatura corporal (°C): ");
+        double temperatura = Convert.ToDouble(Console.ReadLine());
+
+        Console.Write("Ingrese la presion sistolica: ");
+        int presion = Convert.ToInt32(Console.ReadLine());
+
+        if (temperatura > 39 || presion > 180)
+        {
+            Console.WriteLine("ROJO (Critico)");
+            Console.WriteLine("Recomendacion: Atencion medica inmediata.");
+        }
+        else if (temperatura > 38 || presion > 140)
+        {
+            Console.WriteLine("AMARILLO (Urgente)");
+            Console.WriteLine("Recomendacion: Evaluacion medica prioritaria.");
+        }
+        else
+        {
+            Console.WriteLine("VERDE (Estable)");
+            Console.WriteLine("Recomendacion: Paciente estable.");
+        }
+    }
+}
