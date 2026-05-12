@@ -1,0 +1,166 @@
+using System;
+using System.IO;
+
+class Usuario
+{
+    private string usuario;
+    private string contrasena;
+
+    public Usuario(string u, string c)
+    {
+        usuario = u;
+        contrasena = c;
+    }
+
+    public bool Login(string u, string c)
+    {
+        return usuario == u && contrasena == c;
+    }
+}
+
+class Cita
+{
+    private string paciente;
+    private string fecha;
+    private string motivo;
+
+    public Cita(string paciente, string fecha, string motivo)
+    {
+        this.paciente = paciente;
+        this.fecha = fecha;
+        this.motivo = motivo;
+    }
+
+    public string ObtenerDatos()
+    {
+        return "Paciente: " + paciente +
+               " | Fecha: " + fecha +
+               " | Motivo: " + motivo;
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Usuario admin = new Usuario("admin", "1234");
+
+        string usuarioIngresado;
+        string contrasenaIngresada;
+
+        Console.WriteLine("=== SISTEMA DE CITAS MEDICAS ===");
+
+        // LOGIN
+        Console.Write("Usuario: ");
+        usuarioIngresado = Console.ReadLine();
+
+        Console.Write("Contrasena: ");
+        contrasenaIngresada = Console.ReadLine();
+
+        if (!admin.Login(usuarioIngresado, contrasenaIngresada))
+        {
+            Console.WriteLine("Usuario o contrasena incorrectos.");
+            return;
+        }
+
+        Console.WriteLine("\nLogin exitoso.");
+
+        int opcion = 0;
+
+        // MENU PRINCIPAL
+        do
+        {
+            Console.WriteLine("\n=== MENU ===");
+            Console.WriteLine("1. Registrar cita");
+            Console.WriteLine("2. Ver citas");
+            Console.WriteLine("3. Salir");
+
+            Console.Write("Seleccione una opcion: ");
+
+            try
+            {
+                opcion = int.Parse(Console.ReadLine());
+
+                switch (opcion)
+                {
+                    case 1:
+                        RegistrarCita();
+                        break;
+
+                    case 2:
+                        VerCitas();
+                        break;
+
+                    case 3:
+                        Console.WriteLine("Saliendo del sistema...");
+                        break;
+
+                    default:
+                        Console.WriteLine("Opcion invalida.");
+                        break;
+                }
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Error: Debe ingresar un numero.");
+            }
+
+        } while (opcion != 3);
+    }
+
+    // Metodo para registrar citas
+    static void RegistrarCita()
+    {
+        try
+        {
+            Console.Write("\nNombre del paciente: ");
+            string paciente = Console.ReadLine();
+
+            Console.Write("Fecha de la cita: ");
+            string fecha = Console.ReadLine();
+
+            Console.Write("Motivo de la cita: ");
+            string motivo = Console.ReadLine();
+
+            Cita nuevaCita = new Cita(paciente, fecha, motivo);
+
+            // Guardar en archivo
+            StreamWriter archivo = File.AppendText("citas.txt");
+            archivo.WriteLine(nuevaCita.ObtenerDatos());
+            archivo.Close();
+
+            Console.WriteLine("Cita registrada correctamente.");
+        }
+        catch (Exception)
+        {
+            Console.WriteLine("Error al registrar la cita.");
+        }
+    }
+
+    // Metodo para mostrar citas
+    static void VerCitas()
+    {
+        try
+        {
+            Console.WriteLine("\n=== LISTA DE CITAS ===");
+
+            if (File.Exists("citas.txt"))
+            {
+                string[] citas = File.ReadAllLines("citas.txt");
+
+                foreach (string cita in citas)
+                {
+                    Console.WriteLine(cita);
+                }
+            }
+            else
+            {
+                Console.WriteLine("No hay citas registradas.");
+            }
+        }
+        catch (Exception)
+        {
+            Console.WriteLine("Error al leer el archivo.");
+        }
+    }
+}
