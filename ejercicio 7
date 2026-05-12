@@ -1,0 +1,46 @@
+using System;
+
+class Program
+{
+    // Metodo que calcula la dosis
+    static double CalcularDosis(double peso, double dosisPorKg)
+    {
+        double dosis = peso * dosisPorKg;
+        return dosis;
+    }
+
+    // Metodo para mostrar el resultado
+    static void MostrarResultado(string nombre, double dosis)
+    {
+        Console.WriteLine("\n=== RESULTADO ===");
+        Console.WriteLine("Paciente: " + nombre);
+        Console.WriteLine("Dosis recomendada: " + dosis + " mg");
+    }
+
+    static void Main(string[] args)
+    {
+        // Variables
+        string nombre;
+        double peso;
+        double dosisPorKg;
+        double dosisFinal;
+
+        // Entrada de datos
+        Console.WriteLine("=== CALCULADORA DE DOSIS ===");
+
+        Console.Write("Ingrese el nombre del paciente: ");
+        nombre = Console.ReadLine();
+
+        Console.Write("Ingrese el peso del paciente (kg): ");
+        peso = double.Parse(Console.ReadLine());
+
+        Console.Write("Ingrese la dosis por kilogramo (mg): ");
+        dosisPorKg = double.Parse(Console.ReadLine());
+
+        // Llamado al metodo para calcular
+        dosisFinal = CalcularDosis(peso, dosisPorKg);
+
+        // Llamado al metodo para mostrar
+        MostrarResultado(nombre, dosisFinal);
+    }
+}
