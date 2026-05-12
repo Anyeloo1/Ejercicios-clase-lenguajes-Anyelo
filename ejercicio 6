@@ -1,0 +1,57 @@
+using System;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Arreglos para guardar nombres y cantidades
+        string[] medicamentos = new string[5];
+        int[] cantidades = new int[5];
+
+        // Ingreso de datos
+        Console.WriteLine("=== INVENTARIO DE MEDICAMENTOS ===");
+
+        for (int i = 0; i < 5; i++)
+        {
+            Console.WriteLine("\nMedicamento #" + (i + 1));
+
+            Console.Write("Ingrese el nombre del medicamento: ");
+            medicamentos[i] = Console.ReadLine();
+
+            Console.Write("Ingrese la cantidad disponible: ");
+            cantidades[i] = int.Parse(Console.ReadLine());
+        }
+
+        // Mostrar inventario completo
+        Console.WriteLine("\n=== INVENTARIO COMPLETO ===");
+
+        for (int i = 0; i < 5; i++)
+        {
+            Console.WriteLine(
+                "Medicamento: " + medicamentos[i] +
+                " | Cantidad: " + cantidades[i]
+            );
+        }
+
+        // Buscar el medicamento con menos stock
+        int menor = cantidades[0];
+        string medicamentoMenor = medicamentos[0];
+
+        for (int i = 1; i < 5; i++)
+        {
+            if (cantidades[i] < menor)
+            {
+                menor = cantidades[i];
+                medicamentoMenor = medicamentos[i];
+            }
+        }
+
+        // Mostrar resultado
+        Console.WriteLine("\n=== MEDICAMENTO CON MENOS STOCK ===");
+        Console.WriteLine(
+            "Medicamento: " + medicamentoMenor +
+            " | Cantidad: " + menor
+        );
+    }
+}
+
