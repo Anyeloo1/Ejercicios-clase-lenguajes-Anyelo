@@ -1,0 +1,31 @@
+
+using System;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        int historiaClinica;
+
+        Console.WriteLine("=== SISTEMA DE HISTORIA CLINICA ===");
+
+        try
+        {
+            // Pedir numero de historia clinica
+            Console.Write("Ingrese el numero de historia clinica: ");
+
+            historiaClinica = int.Parse(Console.ReadLine());
+
+            // Mostrar resultado si el dato es correcto
+            Console.WriteLine("Numero de historia clinica registrado: " + historiaClinica);
+        }
+        catch (FormatException)
+        {
+            // Mensaje amigable si ingresan texto
+            Console.WriteLine("Error: Debe ingresar solo numeros.");
+        }
+
+        Console.WriteLine("Programa finalizado correctamente.");
+    }
+}
+
