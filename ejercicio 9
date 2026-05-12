@@ -1,0 +1,78 @@
+
+using System;
+
+class Paciente
+{
+    // Atributos privados
+    private string nombre;
+    private int edad;
+    private string genero;
+
+    // Metodos Get y Set para nombre
+    public string GetNombre()
+    {
+        return nombre;
+    }
+
+    public void SetNombre(string n)
+    {
+        nombre = n;
+    }
+
+    // Metodos Get y Set para edad
+    public int GetEdad()
+    {
+        return edad;
+    }
+
+    public void SetEdad(int e)
+    {
+        edad = e;
+    }
+
+    // Metodos Get y Set para genero
+    public string GetGenero()
+    {
+        return genero;
+    }
+
+    public void SetGenero(string g)
+    {
+        genero = g;
+    }
+
+    // Metodo para mostrar perfil
+    public void MostrarPerfil()
+    {
+        Console.WriteLine("Nombre: " + nombre);
+        Console.WriteLine("Edad: " + edad);
+        Console.WriteLine("Genero: " + genero);
+        Console.WriteLine("---------------------------");
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Crear primer objeto
+        Paciente paciente1 = new Paciente();
+
+        paciente1.SetNombre("Carlos Perez");
+        paciente1.SetEdad(25);
+        paciente1.SetGenero("Masculino");
+
+        // Crear segundo objeto
+        Paciente paciente2 = new Paciente();
+
+        paciente2.SetNombre("Maria Lopez");
+        paciente2.SetEdad(30);
+        paciente2.SetGenero("Femenino");
+
+        // Mostrar perfiles
+        Console.WriteLine("=== PERFIL DE PACIENTES ===");
+
+        paciente1.MostrarPerfil();
+        paciente2.MostrarPerfil();
+    }
+}
